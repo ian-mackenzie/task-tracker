@@ -1,10 +1,10 @@
 'use strict';
 
-import { Schema, model } from "mongoose";
+const mongoose = require('mongoose');
 
-var taskSchema = Schema({
+var taskSchema = mongoose.Schema({
   _user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
   title: { type: String, required: true },
@@ -15,4 +15,4 @@ var taskSchema = Schema({
   completed: boolean
 });
 
-module.exports = model('Task', taskSchema);
+module.exports = mongoose.model('Task', taskSchema);

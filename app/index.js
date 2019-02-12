@@ -1,25 +1,27 @@
-import path from 'path';
-import express from 'express';
-import { json, urlencoded } from 'body-parser';
-import { connect, set } from 'mongoose';
+const path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 
 const app = express();
 
-connect(process.env.MONGO_URL, {
-  useNewUrlParser: true
-})
-.then(() => {
-  console.log('Connected to database!');
-})
-.catch(() => {
-  console.log('Connection failed!');
-});
+if (process.env.MONGO_URL) {
+  mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true
+  })
+  .then(() => {
+    console.log('Connected to database!');
+  })
+  .catch(() => {
+    console.log('Connection failed!');
+  });
+  
+  mongoose.set('useCreateIndex', true);
+}
 
-set('useCreateIndex', true);
-
-app.use(json());
-app.use(urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use('/images', express.static(path.join('static/images')));
 
 app.use((req, res, next) => {
