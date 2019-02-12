@@ -1,0 +1,22 @@
+{
+  "name": "check-list-server",
+  "version": "0.0.1",
+  "description": "a simple todo list app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:server": "nodemon server.js"
+  },
+  "author": "Ian Mackenzie ian@mackenzie.work",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.11",
+    "passport": "^0.4.0"
+  },
+  "devDependencies": {
+    "debug": "^4.1.1",
+    "nodemon": "^1.18.10"
+  }
+}
